@@ -24,7 +24,9 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'images' => ['nullable','image'],
+            'images' => ['required', 'array'],
+            // 'images.*' => ['required'],
+            // 'images.*' => ['regex:/\.(jpg|jpeg|png|gif)$/i' ,'image'],
 
         ];
     }

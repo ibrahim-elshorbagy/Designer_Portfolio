@@ -89,7 +89,7 @@ class ProjectController extends Controller
 
         return inertia('Project/Show',[
             'project'=> new ProjectResource($project),
-            'queryParams' => request()->query() ?: null,
+
         ]);
     }
 
@@ -107,25 +107,69 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
-    {
+public function update(UpdateProjectRequest $request, Project $project)
+{
+    $data = $request->validated();
 
-        $data = $request->validated();
-        $data['updated_by']=Auth::id();
+    //Start slug change ------------------
 
-        $image = $data['image'] ?? null;
-        if($image)
-        {
-            if($project->image_path)
-            {
-                Storage::disk('public')->deleteDirectory(dirname($project->image_path));
-            }
-            $data['image_path'] = $image->store('project/' . Str::random(),'public');
-        }
-        $project ->update($data);
-        return to_route('project.index')
-        ->with('success',"Project Updated Successfully");
+    $oldSlug = $project->slug;
+    $newSlug = Str::slug($data['name']);
+
+    if ($newSlug !== $oldSlug) {
+
+        // Update the slug in the data array
+        $data['slug'] = $newSlug;
+
+        // Rename the folder for old images to new slug
+        $oldImageFolder = 'project/' . $oldSlug;
+        $newImageFolder = 'public/project/' . $newSlug;
+
+        // Create new folder for new slug and delete old
+        Storage::makeDirectory($newImageFolder);
+        Storage::deleteDirectory($oldImageFolder);
+        Storage::move($oldImageFolder, $newImageFolder);
+
+        $imageFolder = 'project/' . $newSlug;
+        $data['slug'] = $newSlug;
+
+    } else {
+        // Slug hasn't changed, use existing folder
+        $imageFolder = 'project/' . $oldSlug;
+        $data['slug'] = $oldSlug;
     }
+
+    //End slug change------------------
+
+
+    //adding image to Data[]
+    $imagePaths = json_decode($project['image_path']);
+
+    if (is_array($data['images'][0])){//if first element array that's mean the second element is new image
+
+
+    unset($data['images'][0]);
+
+    foreach ($data['images'] as $image) {
+
+        $path = $image->store($imageFolder, 'public'); //error on updaing just slug
+
+        $imagePaths[] = $path;
+
+    }}
+
+
+
+    //Updating
+    unset($data['images']);
+    $data['image_path'] = json_encode($imagePaths);
+    $project->update($data);
+
+
+    return redirect()->route('project.index')
+                    ->with('success', "Project Updated Successfully");
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -5,11 +5,11 @@ import TextAreaInput from "@/Components/TextAreaInput";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import { useState,useRef } from "react";
+import { useState } from "react";
 
 export default function Create({ auth }) {
 
-    const { data, setData, post, errors, reset } = useForm({
+    const { data, setData, post, errors } = useForm({
         images: [],
         name: "",
         description: "",
@@ -68,7 +68,6 @@ export default function Create({ auth }) {
 
             <div className="py-12 ">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
-                    {JSON.stringify(errors)}asd
                     <div className="text-white bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 sm:rounded-lg">
                         <form
                             onSubmit={onSubmit}
@@ -161,6 +160,7 @@ export default function Create({ auth }) {
                                         id="project_image_path"
                                         type="file"
                                         name="image"
+                                        accept="image/*"
                                         multiple
                                         className="hidden"
                                         onChange={onFileSelect}
@@ -169,7 +169,7 @@ export default function Create({ auth }) {
 
                                 <div className="mt-4 xl">
                                     <InputError
-                                        message={errors['images.0']}
+                                        message={errors["images.0"] || errors.images}
                                         className="mt-2"
                                     />
                                 </div>
