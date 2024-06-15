@@ -227,13 +227,14 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                         <Link
                                                             href={route(
                                                                 "project.show",
-                                                                project.id
+                                                                project.slug
                                                             )}
                                                         >
                                                             {project.name}
                                                         </Link>
                                                     </div>
                                                 </th>
+                                                {JSON.stringify(project)}
                                                 <td className="px-3 py-2 text-center">
                                                     <span
                                                         className={
@@ -256,8 +257,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 <td className="px-3 py-2 text-nowrap">
                                                     {project.due_date}
                                                 </td>
-                                                <td className="px-3 py-2">
-                                                </td>
+                                                <td className="px-3 py-2"></td>
                                                 <td className="px-3 py-2 text-nowrap">
                                                     <Link
                                                         href={route(

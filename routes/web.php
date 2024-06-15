@@ -17,7 +17,10 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')
 
 Route::get('task/my-task',[TaskController::class,'myTasks'])->name('task.myTasks');
 
-Route::resource('project',ProjectController::class);
+
+Route::resource('project', ProjectController::class)->except(['show']);
+Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
+
 Route::resource('task',TaskController::class);
 Route::resource('user',UserController::class);
 
