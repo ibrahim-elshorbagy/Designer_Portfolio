@@ -111,23 +111,16 @@ public function update(UpdateProjectRequest $request, Project $project)
 {
     $data = $request->validated();
 
-    //Start slug change ------------------
+    // Start slug change ------------------------------------------------------
 
     $oldSlug = $project->slug;
     $newSlug = Str::slug($data['name']);
 
     if ($newSlug !== $oldSlug) {
 
-        // Update the slug in the data array
-        $data['slug'] = $newSlug;
-
-        // Rename the folder for old images to new slug
-        $oldImageFolder = 'project/' . $oldSlug;
+        $oldImageFolder = 'public/project/' . $oldSlug;
         $newImageFolder = 'public/project/' . $newSlug;
 
-        // Create new folder for new slug and delete old
-        Storage::makeDirectory($newImageFolder);
-        Storage::deleteDirectory($oldImageFolder);
         Storage::move($oldImageFolder, $newImageFolder);
 
         $imageFolder = 'project/' . $newSlug;
@@ -139,37 +132,106 @@ public function update(UpdateProjectRequest $request, Project $project)
         $data['slug'] = $oldSlug;
     }
 
-    //End slug change------------------
+    $paths=json_decode($project['image_path'],true);
+    $project['name'] = $data['name'];
+    $project['slug'] = $data['slug'];
+
+    $newPaths = array_map(function($path) use ($project) {
+    return preg_replace('/[^\/]+(?=\/[^\/]+$)/', $project['slug'], $path);
+    }, $paths);
+
+    $project['image_path'] = json_encode($newPaths);
+    $project->save();
+
+    //End slug change ------------------------------------------------------
 
 
-    //adding image to Data[]
-    $imagePaths = json_decode($project['image_path']);
+    //Start image upload and Delete of image //There is Two status    ------------------------------------------------------------------------------------------
 
-    if (is_array($data['images'][0])){//if first element array that's mean the second element is new image
-
-
-    unset($data['images'][0]);
-
-    foreach ($data['images'] as $image) {
-
-        $path = $image->store($imageFolder, 'public'); //error on updaing just slug
-
-        $imagePaths[] = $path;
-
-    }}
+    $imagePaths =  $data['images'];
 
 
 
-    //Updating
-    unset($data['images']);
-    $data['image_path'] = json_encode($imagePaths);
-    $project->update($data);
+        foreach ($imagePaths as $image) { //First New images
+            if ($image instanceof \Illuminate\Http\UploadedFile) { // Handle the UploadedFile object
 
+                $path = $image->store($imageFolder, 'public');
+                $newpaths = json_decode($project['image_path'], true) ?? [];
+                $newpaths[] = $path;
+                $project['image_path'] = json_encode($newpaths);
+                $project->save();
 
-    return redirect()->route('project.index')
-                    ->with('success', "Project Updated Successfully");
+            }
+            else //Second delete images
+            {
+                // Find the difference
+                $currentPaths = json_decode($project['image_path'], true) ?? []; //get paths from database
+                $filenames1 = array_map(fn($path) => basename($path), $currentPaths); //from database
+
+                
+                if(is_array($imagePaths[0])){
+                $filenames2 = array_map(fn($path) => basename($path), $imagePaths[0]); //if there is upladed image and delete image
+                }
+                else{
+
+                $filenames2 = array_map(fn($path) => basename($path), $imagePaths); //if there is just image delete
+                }
+
+                $difference = array_diff($filenames1,$filenames2);
+
+                    foreach ($difference as $path)
+                    {
+                        $fullPath = 'project/' . $project['slug'] . '/' . $path;
+                        Storage::disk('public')->delete($fullPath); //delete from storage
+                        foreach ($currentPaths as $key => $value) { //delete from database
+
+                            if ($value === $fullPath) {
+
+                                unset($currentPaths[$key]);
+                            }
+                        }
+
+                    }
+
+                $project['image_path'] = json_encode($currentPaths);
+                $project->save();
+
+            }
+
+    }
+
+    // elseif (is_array($imagePaths)) //Third only delete of images
+    // {
+    //     $currentPaths = json_decode($project['image_path'], true) ?? []; //get paths from database
+
+    //     // Find the difference
+    //     $filenames1 = array_map(fn($path) => basename($path), $currentPaths); //from database
+    //     $filenames2 = array_map(fn($path) => basename($path), $imagePaths); // from request
+    //     $difference = array_diff($filenames1,$filenames2);
+
+    //         foreach ($difference as $path)
+    //         {
+    //             $fullPath = 'project/' . $project['slug'] . '/' . $path;
+    //             Storage::disk('public')->delete($fullPath); //delete from storage
+    //             foreach ($currentPaths as $key => $value) { //delete from database
+
+    //                 if ($value === $fullPath) {
+
+    //                     unset($currentPaths[$key]);
+    //                 }
+    //             }
+
+    //         }
+
+    //     $project['image_path'] = json_encode($currentPaths);
+    //     $project->save();
+
+    // }
+
+    // return redirect()->route('project.index')
+    //                 ->with('success', "Project Updated Successfully");
+
 }
-
 
     /**
      * Remove the specified resource from storage.
@@ -177,7 +239,7 @@ public function update(UpdateProjectRequest $request, Project $project)
     public function destroy(Project $project)
     {
         $project->delete();
-         if($project->image_path)
+        if($project->image_path)
             {
                 Storage::disk('public')->deleteDirectory(dirname($project->image_path));
             }

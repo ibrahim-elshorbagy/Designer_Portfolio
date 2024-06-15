@@ -66,10 +66,7 @@ export default function Create({ auth,project }) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
-                    {JSON.stringify(project)}
-                    {JSON.stringify(errors)}
 
-                    {/* {URL.createObjectURL(project.image_path)} */}
                     <div className="text-white bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 sm:rounded-lg">
                         <form
                             onSubmit={onSubmit}
