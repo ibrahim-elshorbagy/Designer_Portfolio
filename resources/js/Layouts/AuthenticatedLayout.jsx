@@ -11,7 +11,7 @@ export default function Authenticated({ user, header, children }) {
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <nav className="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex items-center shrink-0">
@@ -33,14 +33,6 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Projects
                                 </NavLink>
-                               
-                                <NavLink
-                                    href={route("user.index")}
-                                    active={route().current("user.index")}
-                                >
-                                    Users
-                                </NavLink>
-
                             </div>
                         </div>
 

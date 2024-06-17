@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Project::factory()
-            ->count(30)
+            ->count(10)
             ->create();
     }
 }

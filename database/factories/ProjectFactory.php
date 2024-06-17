@@ -20,6 +20,7 @@ class ProjectFactory extends Factory
             'name' => fake()->sentence(),
             'description' => fake()->realText(),
             'slug' => fake()->slug(),
+            
             'image_path' => json_encode(['image' => fake()->imageUrl()]),
             'created_at' => time(),
             'updated_at' => time(),

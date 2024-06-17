@@ -3,26 +3,23 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::redirect('/','/dashboard');
+Route::redirect('/','/Home');
+Route::get('/Home',[DashboardController::class,'index'])->name('dashboard');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
-Route::get('task/my-task',[TaskController::class,'myTasks'])->name('task.myTasks');
 
 
 Route::resource('project', ProjectController::class)->except(['show']);
 Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
-Route::resource('task',TaskController::class);
-Route::resource('user',UserController::class);
+//Route::resource('user',UserController::class);
 
 });
 
