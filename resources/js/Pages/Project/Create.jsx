@@ -7,7 +7,50 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 export default function Create({ auth }) {
+   const modules = {
+       toolbar: [
+           [
+               { header: "1" },
+               { header: "2" },
+               { header: "3" },
+               { header: "4" },
+               { font: [] },
+           ],
+           [{ size: [] }],
+           ["bold", "italic", "underline", "strike"],
+           ["link", "image", "video"],
+           [{ list: "bullet" }],
+           [{ list: "ordered" }],
+           [{ hr: "horizontal" }],
+           ["clean"],
+       ],
+       clipboard: {
+           matchVisual: false,
+       },
+   };
+
+   const formats = [
+       "header",
+       "font",
+       "size",
+       "bold",
+       "italic",
+       "underline",
+       "strike",
+       "list",
+       "bullet",
+       "ordered",
+       "link",
+       "image",
+       "video",
+       "hr",
+       "clean",
+   ];
+
 
     const { data, setData, post, errors } = useForm({
         images: [],
@@ -58,7 +101,7 @@ export default function Create({ auth }) {
             user={auth.user}
             header={
                 <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    <h2 className="text-xl font-semibold leading-tight text-gray-800 ">
                         Create new Project
                     </h2>
                 </div>
@@ -68,10 +111,10 @@ export default function Create({ auth }) {
 
             <div className="py-12 ">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
-                    <div className="text-white bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                    <div className="text-black bg-white border border-gray-200 rounded-lg shadow-sm sm:rounded-lg">
                         <form
                             onSubmit={onSubmit}
-                            className="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
+                            className="p-4 bg-white shadow sm:p-8 sm:rounded-lg"
                         >
                             <div className="mt-4">
                                 <InputLabel
@@ -103,16 +146,14 @@ export default function Create({ auth }) {
                                     value="Project Description"
                                 />
 
-                                <TextAreaInput
-                                    id="project_description"
-                                    name="description"
-                                    value={data.description}
-                                    className="block w-full mt-1"
-                                    onChange={(e) =>
-                                        setData("description", e.target.value)
+                                <ReactQuill
+                                    modules={modules}
+                                    formats={formats}
+                                    className="h-96 "
+                                    onChange={(value) =>
+                                        setData("description", value)
                                     }
                                 />
-
                                 <InputError
                                     message={errors.description}
                                     className="mt-2"
@@ -121,11 +162,11 @@ export default function Create({ auth }) {
 
                             <div className="p-10 mt-4 ">
                                 <div className="my-4 text-center">
-                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                    <p className="text-lg font-semibold text-gray-700 ">
                                         Images Uploading
                                     </p>
                                 </div>
-                                <div className="flex flex-col items-center justify-center p-4 mt-2 transition-colors duration-200 ease-in-out border-2 border-gray-300 border-dashed rounded-md dark:border-gray-600 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <div className="flex flex-col items-center justify-center p-4 mt-2 transition-colors duration-200 ease-in-out border-2 border-gray-300 border-dashed rounded-md bg-gray-50 hover:bg-gray-100 ">
                                     <div className="flex flex-col items-center">
                                         <svg
                                             className="w-10 h-10 text-gray-400"
@@ -141,7 +182,7 @@ export default function Create({ auth }) {
                                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
                                             />
                                         </svg>
-                                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                                        <p className="mt-2 text-sm text-gray-600 ">
                                             <span className="font-semibold">
                                                 Click to upload
                                             </span>{" "}
@@ -169,7 +210,9 @@ export default function Create({ auth }) {
 
                                 <div className="mt-4 xl">
                                     <InputError
-                                        message={errors["images.0"] || errors.images}
+                                        message={
+                                            errors["images.0"] || errors.images
+                                        }
                                         className="mt-2"
                                     />
                                 </div>

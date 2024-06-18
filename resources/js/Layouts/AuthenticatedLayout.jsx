@@ -9,14 +9,14 @@ export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <nav className="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+        <div className="min-h-screen bg-gray-100 ">
+            <nav className="bg-white border-b border-gray-100 ">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex items-center shrink-0">
                                 <Link href="/">
-                                    <ApplicationLogo className="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
+                                    <ApplicationLogo className="block w-auto text-gray-800 fill-current h-9 " />
                                 </Link>
                             </div>
 
@@ -43,7 +43,7 @@ export default function Authenticated({ user, header, children }) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none"
+                                                className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -88,7 +88,7 @@ export default function Authenticated({ user, header, children }) {
                                         (previousState) => !previousState
                                     )
                                 }
-                                className="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400"
+                                className="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-500 d hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 da"
                             >
                                 <svg
                                     className="w-6 h-6"
@@ -139,9 +139,9 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+                    <div className="pt-4 pb-1 border-t border-gray-200 ">
                         <div className="px-4">
-                            <div className="text-base font-medium text-gray-800 dark:text-gray-200">
+                            <div className="text-base font-medium text-gray-800 ">
                                 {user.name}
                             </div>
                             <div className="text-sm font-medium text-gray-500">
@@ -166,7 +166,7 @@ export default function Authenticated({ user, header, children }) {
             </nav>
 
             {header && (
-                <header className="bg-white shadow dark:bg-gray-800">
+                <header className="bg-white shadow ">
                     <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {header}
                     </div>

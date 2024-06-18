@@ -10,7 +10,10 @@ export default function GuestLayout({ children }) {
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
-                <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+                <div
+                    className="container px-4 mx-auto sm:px-6 lg:px-8"
+                    style={{ maxWidth: "1200px" }}
+                >
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex items-center shrink-0">
@@ -27,12 +30,12 @@ export default function GuestLayout({ children }) {
                             >
                                 Login
                             </NavLink>
-                            <NavLink
+                            {/* <NavLink
                                 href={route("register")}
                                 active={route().current("register")}
                             >
                                 Register
-                            </NavLink>
+                            </NavLink> */}
                         </div>
 
                         <div className="flex items-center -mr-2 sm:hidden">
@@ -92,12 +95,12 @@ export default function GuestLayout({ children }) {
                         >
                             Login
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             href={route("register")}
                             active={route().current("register")}
                         >
                             Register
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </div>
             </nav>

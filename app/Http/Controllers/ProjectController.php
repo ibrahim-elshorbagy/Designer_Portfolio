@@ -145,7 +145,6 @@ public function update(UpdateProjectRequest $request, Project $project)
 
     //End slug change ------------------------------------------------------
 
-
     //Start image upload and Delete of image //There is Two status    ------------------------------------------------------------------------------------------
 
     $imagePaths =  $data['images'];
@@ -168,7 +167,7 @@ public function update(UpdateProjectRequest $request, Project $project)
                 $currentPaths = json_decode($project['image_path'], true) ?? []; //get paths from database
                 $filenames1 = array_map(fn($path) => basename($path), $currentPaths); //from database
 
-                
+
                 if(is_array($imagePaths[0])){
                 $filenames2 = array_map(fn($path) => basename($path), $imagePaths[0]); //if there is upladed image and delete image
                 }
@@ -197,6 +196,13 @@ public function update(UpdateProjectRequest $request, Project $project)
                 $project->save();
 
             }
+
+            $project['description'] = $data['description'];
+            $project->save();
+
+                return redirect()->route('project.index')
+                    ->with('success', "Project Updated Successfully");
+
 
     }
 
@@ -228,8 +234,6 @@ public function update(UpdateProjectRequest $request, Project $project)
 
     // }
 
-    // return redirect()->route('project.index')
-    //                 ->with('success', "Project Updated Successfully");
 
 }
 

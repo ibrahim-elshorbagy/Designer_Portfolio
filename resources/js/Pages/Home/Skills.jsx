@@ -12,7 +12,7 @@ const Skills = () => {
                         <h3 className="mb-3 text-xl font-bold text-gray-900">
                             Gain insights into my proficiency
                         </h3>
-                        <hr className="mb-8 border-t-2 border-gray-300 dark:border-gray-700" />
+                        <hr className="mb-8 border-t-2 border-gray-300 " />
                     </div>
 
                     <p className="mb-6 text-xl leading-relaxed text-gray-700">

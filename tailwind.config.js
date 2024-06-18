@@ -3,7 +3,7 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    // darkMode: 'class',
+    darkMode: false,
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -28,22 +28,21 @@ export default {
                     "100%": { transform: "rotate(0.0deg)" },
                 },
                 slideUp: {
-                    '0%': {
-                        opacity: '0',
-                        transform: 'translateY(100%)'
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(100%)",
                     },
-                    '100%': {
-                        opacity: '1',
-                        transform: 'translateY(0)'
+                    "100%": {
+                        opacity: "1",
+                        transform: "translateY(0)",
                     },
-                }
-
                 },
+            },
 
             animation: {
-                'waving-hand': 'wave 2s linear infinite',
-                'slideUp': 'slideUp 0.5s ease-out'
-      },
+                "waving-hand": "wave 2s linear infinite",
+                slideUp: "slideUp 0.5s ease-out",
+            },
         },
     },
 
