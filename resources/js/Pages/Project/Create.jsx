@@ -148,10 +148,11 @@ export default function Create({ auth }) {
 
                                     <SelectInput
                                         id="project_category"
+                                        className="mt-1"
                                         type="text"
                                         name="category"
                                         value={data.category}
-                                        classcategory="block w-full mt-1"
+                                        classcategory="block w-full mt-2"
                                         isFocused={true}
                                         onChange={(e) =>
                                             setData("category", e.target.value)
@@ -175,6 +176,30 @@ export default function Create({ auth }) {
                                     />
                                 </div>
                             </div>
+                            <div className="mt-4">
+                                <InputLabel
+                                    htmlFor="behance_link"
+                                    value="Behance link"
+                                />
+
+                                <TextInput
+                                    id="behance_link"
+                                    type="text"
+                                    name="name"
+                                    value={data.behance_link}
+                                    className="block w-full mt-1"
+                                    isFocused={true}
+                                    onChange={(e) =>
+                                        setData("behance_link", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.behance_link}
+                                    className="mt-2"
+                                />
+                            </div>
+
                             <div className="mt-4">
                                 <InputLabel
                                     htmlFor="project_description"

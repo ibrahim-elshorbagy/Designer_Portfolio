@@ -29,6 +29,7 @@ class StoreProjectRequest extends FormRequest
             'images' => ['required', 'array'],
             'images.*' => ['image'],
             'cover_image' => ['required', 'image'],
+            'behance_link' => ['required', 'url'],
         ];
     }
 

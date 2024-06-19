@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->json('image_path')->nullable();
             $table->text('cover_path')->nullable();
+            $table->text('behance_link')->nullable();
             $table->timestamps();
         });
     }

@@ -53,8 +53,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = $request->validated();
 
+        $data = $request->validated();
 
 
 
@@ -121,6 +121,15 @@ class ProjectController extends Controller
 public function update(UpdateProjectRequest $request, Project $project)
 {
     $data = $request->validated();
+
+     // Behance link ------------------------------------------------------
+
+        $behance_link = $data['behance_link'] ?? null;
+        if(isset($behance_link))
+        {
+            $project['behance_link'] = $behance_link;
+        }
+        $project->save();
 
     // Cover Image ------------------------------------------------------
 

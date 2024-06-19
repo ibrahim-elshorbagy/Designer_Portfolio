@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 const Show = ({ auth, project }) => {
     //for adding class to project description As Tailwind Clear it
@@ -94,6 +95,17 @@ const Show = ({ auth, project }) => {
                                         />
                                     </div>
                                 ))}
+                            </div>
+                            <div className="flex items-center justify-center ">
+                                <a
+                                    href={project.behance_link}
+                                    className="flex items-center gap-2 px-4 py-2 font-bold text-white bg-blue-500 rounded pointer hover:bg-blue-700"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <HiOutlineExternalLink className="w-4 h-4" />
+                                    Visit My Behance Profile
+                                </a>
                             </div>
                         </div>
                     </div>

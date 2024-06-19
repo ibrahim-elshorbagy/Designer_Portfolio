@@ -58,6 +58,7 @@ export default function Create({ auth, project }) {
         category: project.category || "",
         cover_image: project.cover_image || "",
         cover_image_new: "",
+        behance_link: project.behance_link || "",
         _method: "PUT",
     });
 
@@ -180,6 +181,29 @@ export default function Create({ auth, project }) {
                             </div>
                             <div className="mt-4">
                                 <InputLabel
+                                    htmlFor="behance_link"
+                                    value="Behance link"
+                                />
+
+                                <TextInput
+                                    id="behance_link"
+                                    type="text"
+                                    name="name"
+                                    value={data.behance_link}
+                                    className="block w-full mt-1"
+                                    isFocused={true}
+                                    onChange={(e) =>
+                                        setData("behance_link", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.behance_link}
+                                    className="mt-2"
+                                />
+                            </div>
+                            <div className="mt-4">
+                                <InputLabel
                                     htmlFor="project_description"
                                     value="Project Description"
                                 />
@@ -249,23 +273,23 @@ export default function Create({ auth, project }) {
 
                                     {data.cover_image_new ? (
                                         <div className="flex items-center justify-center mt-6">
-                                            <div className="flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg shadow-md w-80 h-80">
+                                            <div className="flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg shadow-md ">
                                                 <img
                                                     src={URL.createObjectURL(
                                                         data.cover_image_new
                                                     )}
                                                     alt="Uploaded"
-                                                    className="object-contain max-w-full max-h-full"
+                                                    className="object-cover max-w-full max-h-full"
                                                 />
                                             </div>
                                         </div>
                                     ) : project.cover_image ? (
                                         <div className="flex items-center justify-center mt-6">
-                                            <div className="flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg shadow-md w-80 h-80">
+                                            <div className="flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg shadow-md ">
                                                 <img
                                                     src={project.cover_image}
                                                     alt="Uploaded"
-                                                    className="object-contain max-w-full max-h-full"
+                                                    className="object-cover max-w-full max-h-full"
                                                 />
                                             </div>
                                         </div>

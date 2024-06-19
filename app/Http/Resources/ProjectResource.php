@@ -29,6 +29,7 @@ class ProjectResource extends JsonResource
             })->all(),
             'cover_image' => $this->cover_path && !(str_starts_with($this->cover_path, 'http')) ?
                 Storage::url($this->cover_path) : $this->cover_path,
+            'behance_link' =>$this->behance_link,
 
         ];
     }

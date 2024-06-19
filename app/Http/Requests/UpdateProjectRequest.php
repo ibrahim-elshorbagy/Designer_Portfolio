@@ -28,6 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'category' => ['required', Rule::in(['brand', 'Graphic Design', 'Motion Graphic'])],
             'cover_image' => ['required'],
             'cover_image_new' => [],
+            'behance_link' => ['required', 'url'],
 
             // 'images.*' => ['required'],
             // 'images.*' => ['regex:/\.(jpg|jpeg|png|gif)$/i' ,'image'],
