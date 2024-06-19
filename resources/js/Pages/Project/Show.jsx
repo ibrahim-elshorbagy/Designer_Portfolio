@@ -3,7 +3,12 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
+import "react-slideshow-image/dist/styles.css";
+import { Slide } from "react-slideshow-image";
+
 const Show = ({ auth, project }) => {
+
+
     //for adding class to project description As Tailwind Clear it
     useEffect(() => {
         const applyTailwindClasses = () => {
@@ -64,16 +69,18 @@ const Show = ({ auth, project }) => {
             }
         >
             <Head title={`Project "${project.name}"`} />
-            {JSON.stringify(project)}
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="container pb-10 mx-auto sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="h-1/2">
-                            <img
-                                src={project.cover_image}
-                                alt=""
-                                className="object-cover w-full h-full"
-                            />
+                        {/* Cover Image */}
+                        <div>
+                            <div className="h-1/2">
+                                <img
+                                    src={project.cover_image}
+                                    alt=""
+                                    className="object-cover w-full h-full"
+                                />
+                            </div>
                         </div>
                         <div className="p-6 text-gray-900">
                             <div
@@ -82,31 +89,39 @@ const Show = ({ auth, project }) => {
                                     __html: project.description,
                                 }}
                             />
-                            <div className="gap-4 mt-4 columns-1 sm:columns-2 lg:columns-3">
+                        </div>
+                        <div className="w-full h-1/2">
+                            <Slide
+                                duration={2000}
+                                transitionDuration={500}
+                                indicators={false}
+                                className="w-full"
+                            >
                                 {project.image_path.map((image, index) => (
                                     <div
                                         key={index}
-                                        className="relative mb-4 break-inside-avoid"
+                                        className="flex items-center justify-center"
                                     >
                                         <img
-                                            className="w-full h-auto rounded-lg"
                                             src={image}
-                                            alt={image.name}
+                                            alt={`Slide ${index}`}
+                                            className="object-contain w-full "
                                         />
                                     </div>
                                 ))}
-                            </div>
-                            <div className="flex items-center justify-center ">
-                                <a
-                                    href={project.behance_link}
-                                    className="flex items-center gap-2 px-4 py-2 font-bold text-white bg-blue-500 rounded pointer hover:bg-blue-700"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <HiOutlineExternalLink className="w-4 h-4" />
-                                    Visit My Behance Profile
-                                </a>
-                            </div>
+                            </Slide>
+                        </div>
+
+                        <div className="flex items-center justify-center ">
+                            <a
+                                href={project.behance_link}
+                                className="flex items-center gap-2 px-4 py-2 my-5 font-bold text-white bg-blue-500 rounded pointer hover:bg-blue-700"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <HiOutlineExternalLink className="w-4 h-4" />
+                                See The Full Project
+                            </a>
                         </div>
                     </div>
                 </div>
