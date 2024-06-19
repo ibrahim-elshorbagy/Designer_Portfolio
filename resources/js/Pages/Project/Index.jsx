@@ -68,7 +68,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                 </div>
             }
         >
-            <Head title="Projects" />
+
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">

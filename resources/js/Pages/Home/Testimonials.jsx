@@ -39,9 +39,9 @@ const TestimonialSlider = () => {
     return (
         <div className="max-w-4xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto mb-24 text-center">
-                <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                {/* <h2 className="mb-4 text-4xl font-bold text-gray-900">
                     Testimonials
-                </h2>
+                </h2> */}
                 <p className="text-lg text-gray-600">
                     We collaborate with industry leaders to provide you with the
                     best solutions.

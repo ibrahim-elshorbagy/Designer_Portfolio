@@ -16,14 +16,7 @@ export default function Dashboard({
 
 }) {
     return (
-        <GuestLayout
-            user={auth.user}
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800 ">
-                    Dashboard
-                </h2>
-            }
-        >
+        <GuestLayout user={auth.user}>
             <Head title="Dashboard" />
 
             <ProfileCard />

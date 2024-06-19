@@ -17,11 +17,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::resource('project', ProjectController::class)->except(['show']);
-Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 //Route::resource('user',UserController::class);
 
 });
+Route::redirect('admin','/project');
+Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

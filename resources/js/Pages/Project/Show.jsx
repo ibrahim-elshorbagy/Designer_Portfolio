@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
@@ -52,7 +52,7 @@ const Show = ({ auth, project }) => {
     }, [project.description]);
 
     return (
-        <AuthenticatedLayout
+        <GuestLayout
             user={auth.user}
             header={
                 <div className="flex items-center justify-between">
@@ -71,7 +71,7 @@ const Show = ({ auth, project }) => {
             <Head title={`Project "${project.name}"`} />
             <div className="py-12">
                 <div className="container pb-10 mx-auto sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-white sm:rounded-lg">
                         {/* Cover Image */}
                         <div>
                             <div className="h-1/2">
@@ -112,10 +112,10 @@ const Show = ({ auth, project }) => {
                             </Slide>
                         </div>
 
-                        <div className="flex items-center justify-center ">
+                        <div className="flex flex-col items-center mt-5 sm:flex-row sm:justify-center">
                             <a
                                 href={project.behance_link}
-                                className="flex items-center gap-2 px-4 py-2 my-5 font-bold text-white bg-blue-500 rounded pointer hover:bg-blue-700"
+                                className="flex items-center gap-2 px-4 py-2 my-2 font-bold text-white bg-blue-500 rounded sm:my-10 pointer hover:bg-blue-700"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -126,7 +126,7 @@ const Show = ({ auth, project }) => {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </GuestLayout>
     );
 };
 
