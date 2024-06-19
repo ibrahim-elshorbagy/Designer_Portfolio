@@ -55,6 +55,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
+
         $data['slug'] = Str::slug($data['name']);
 
         $imageFolder = 'project/' . $data['slug'];
@@ -70,7 +71,7 @@ class ProjectController extends Controller
             }
 
 
-        $data['image_path'] = json_encode($imagePaths);
+        $data['image_path'] = json_encode($imagePaths, true);
 
         unset($data['images']);
 
@@ -197,44 +198,13 @@ public function update(UpdateProjectRequest $request, Project $project)
 
             }
 
-            $project['description'] = $data['description'];
-            $project->save();
-
-                return redirect()->route('project.index')
-                    ->with('success', "Project Updated Successfully");
 
 
     }
-
-    // elseif (is_array($imagePaths)) //Third only delete of images
-    // {
-    //     $currentPaths = json_decode($project['image_path'], true) ?? []; //get paths from database
-
-    //     // Find the difference
-    //     $filenames1 = array_map(fn($path) => basename($path), $currentPaths); //from database
-    //     $filenames2 = array_map(fn($path) => basename($path), $imagePaths); // from request
-    //     $difference = array_diff($filenames1,$filenames2);
-
-    //         foreach ($difference as $path)
-    //         {
-    //             $fullPath = 'project/' . $project['slug'] . '/' . $path;
-    //             Storage::disk('public')->delete($fullPath); //delete from storage
-    //             foreach ($currentPaths as $key => $value) { //delete from database
-
-    //                 if ($value === $fullPath) {
-
-    //                     unset($currentPaths[$key]);
-    //                 }
-    //             }
-
-    //         }
-
-    //     $project['image_path'] = json_encode($currentPaths);
-    //     $project->save();
-
-    // }
-
-
+    $project['description'] = $data['description'];
+            $project->save();
+    return redirect()->route('project.index')
+                    ->with('success', "Project Updated Successfully");
 }
 
     /**

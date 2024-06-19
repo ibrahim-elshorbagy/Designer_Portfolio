@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'category' => ['required', Rule::in(['brand', 'Graphic Design', 'Motion Graphic'])],
             'images' => ['required', 'array'],
             'images.*' => ['image'],
         ];

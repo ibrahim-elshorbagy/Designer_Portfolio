@@ -26,14 +26,14 @@ const Services = () => {
     return (
         <div className="pt-12 pb-24">
             <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-                <div className="w-64 mb-12 ">
-                    <h2 className="mb-4 text-3xl font-extrabold text-left text-gray-900">
-                        My Services
+                <div className="max-w-2xl mx-auto mb-12 text-center">
+                    <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                        Creative and Professional Skills
                     </h2>
-                    <h3 className="mb-3 text-xl font-bold text-left text-gray-900">
-                        Awesome Services For You
-                    </h3>
-                    <hr className="mb-8 border-t-2 border-gray-300 dark:border-gray-700" />
+                    <p className="text-lg text-gray-600">
+                        Gain insights into my proficiency
+                    </p>
+                    <hr className="mx-auto my-8 border-t-2 border-indigo-500" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

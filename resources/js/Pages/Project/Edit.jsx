@@ -53,8 +53,9 @@ export default function Create({ auth, project }) {
 
     const { data, setData, post, errors } = useForm({
         images: project.image_path || [],
-        name: project.name || '',
-        description: project.description || '' ,
+        name: project.name || "",
+        description: project.description || "",
+        category: project.category || "",
         _method: "PUT",
     });
 
@@ -114,30 +115,65 @@ export default function Create({ auth, project }) {
                             onSubmit={onSubmit}
                             className="p-4 bg-white shadow sm:p-8 sm:rounded-lg"
                         >
-                            {JSON.stringify(errors)}
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="mt-4">
+                                    <InputLabel
+                                        htmlFor="project_name"
+                                        value="Project Name"
+                                    />
 
-                            <div className="mt-4">
-                                <InputLabel
-                                    htmlFor="project_name"
-                                    value="Project Name"
-                                />
+                                    <TextInput
+                                        id="project_name"
+                                        type="text"
+                                        name="name"
+                                        value={data.name}
+                                        className="block w-full mt-1"
+                                        isFocused={true}
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
+                                    />
 
-                                <TextInput
-                                    id="project_name"
-                                    type="text"
-                                    name="name"
-                                    value={data.name}
-                                    className="block w-full mt-1"
-                                    isFocused={true}
-                                    onChange={(e) =>
-                                        setData("name", e.target.value)
-                                    }
-                                />
+                                    <InputError
+                                        message={errors.name}
+                                        className="mt-2"
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <InputLabel
+                                        htmlFor="project_category"
+                                        value="Project Name"
+                                    />
 
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
+                                    <SelectInput
+                                        id="project_category"
+                                        type="text"
+                                        name="category"
+                                        defaultValue={data.category} 
+                                        value={data.category}
+                                        className="block w-full mt-1"
+                                        isFocused={true}
+                                        onChange={(e) =>
+                                            setData("category", e.target.value)
+                                        }
+                                    >
+                                        <option value="">
+                                            Select Category
+                                        </option>
+                                        <option value="brand">Brand</option>
+                                        <option value="Graphic Design">
+                                            Graphic Design
+                                        </option>
+                                        <option value="Motion Graphic">
+                                            Motion Graphic
+                                        </option>
+                                    </SelectInput>
+
+                                    <InputError
+                                        message={errors.category}
+                                        className="mt-2"
+                                    />
+                                </div>
                             </div>
                             <div className="mt-4">
                                 <InputLabel

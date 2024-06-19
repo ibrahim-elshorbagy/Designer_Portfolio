@@ -21,6 +21,7 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'category' => $this->category,
             'description' => $this->description,
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'image_path' => collect(json_decode($this->image_path))->map(function($path) {

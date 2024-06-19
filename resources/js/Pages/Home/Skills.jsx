@@ -12,7 +12,7 @@ const Skills = () => {
                         <h3 className="mb-3 text-xl font-bold text-gray-900">
                             Gain insights into my proficiency
                         </h3>
-                        <hr className="mb-8 border-t-2 border-gray-300 " />
+                        <hr className="mb-8 border-t-2 border-indigo-500 " />
                     </div>
 
                     <p className="mb-6 text-xl leading-relaxed text-gray-700">
@@ -46,20 +46,20 @@ const Skills = () => {
 
 const SkillItem = ({ title, percentage }) => {
     return (
-        <div className="mb-6">
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                {title}
-            </h3>
-            <div className="relative h-6 bg-gray-300 rounded-lg">
-                <div
-                    className="absolute top-0 left-0 h-6 bg-blue-500 rounded-lg"
-                    style={{ width: `${percentage}%` }}
-                />
-                <div className="absolute top-0 left-0 flex items-center justify-center w-full h-6 text-xs font-semibold text-white">
+            <div className="flex items-end w-full mb-6">
+                <div className="flex-1">
+                    <h3 className="mb-2 text-lg font-semibold text-gray-900">{title}</h3>
+                    <div className="relative h-4 bg-blue-100">
+                        <div
+                            className="absolute top-0 left-0 h-full bg-blue-500 rounded-r-sm"
+                            style={{ width: `${percentage}%` }}
+                        />
+                    </div>
+                </div>
+                <div className="mt-1 ml-2 text-sm font-semibold text-black">
                     {percentage}%
                 </div>
             </div>
-        </div>
     );
 };
 

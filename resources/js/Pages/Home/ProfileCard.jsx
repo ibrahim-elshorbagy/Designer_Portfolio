@@ -30,7 +30,7 @@ const ProfileCard = () => {
     }, [index, phrases, isTyping]);
 
     return (
-        <div className="container flex flex-col items-center justify-between mx-auto bg-gray-100 md:flex-row">
+        <div className="container flex flex-col items-center justify-between mx-auto md:flex-row">
             <div className="text-center md:text-left md:w-1/2">
                 <h1 className="text-3xl font-bold">
                     Hello <span className="animate-waving-hand">👋🏻</span>
@@ -57,11 +57,11 @@ const ProfileCard = () => {
                 </div>
             </div>
 
-            <div className="px-4 py-8 mt-8 md:w-1/2 md:mt-0">
+            <div className="px-4 mt-8 md:w-1/2 md:mt-0">
                 <img
-                    src="images/pic.jpg"
+                    src="images/asd.png"
                     alt="Belal Elshorbagy"
-                    className="object-cover w-full h-full rounded-lg shadow-md"
+                    className="object-cover w-4/5 h-1/2 "
                 />
             </div>
         </div>

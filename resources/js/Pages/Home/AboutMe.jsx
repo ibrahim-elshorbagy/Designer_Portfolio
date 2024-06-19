@@ -2,13 +2,13 @@ import React from "react";
 
 const AboutMe = () => {
     return (
-        <div className="container px-4 py-8 mx-auto max-w-7xl">
+        <div className="container px-4 mx-auto pt-7 max-w-7xl">
             <div className="grid items-center grid-cols-1 gap-8 md:grid-cols-2">
                 <div className="relative">
                     <img
-                        src="images/pic.jpg"
+                        src="images/asd.png"
                         alt="Belal Elshorbagy"
-                        className="object-cover w-full h-full shadow-lg rounded-xl"
+                        className="transform scale-x-[-1] object-cover w-full h-full "
                     />
                 </div>
                 <div className="flex flex-col space-y-6">

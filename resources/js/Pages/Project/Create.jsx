@@ -11,6 +11,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 export default function Create({ auth }) {
+
    const modules = {
        toolbar: [
            [
@@ -25,7 +26,6 @@ export default function Create({ auth }) {
            ["link", "image", "video"],
            [{ list: "bullet" }],
            [{ list: "ordered" }],
-           [{ hr: "horizontal" }],
            ["clean"],
        ],
        clipboard: {
@@ -47,7 +47,6 @@ export default function Create({ auth }) {
        "link",
        "image",
        "video",
-       "hr",
        "clean",
    ];
 
@@ -116,30 +115,59 @@ export default function Create({ auth }) {
                             onSubmit={onSubmit}
                             className="p-4 bg-white shadow sm:p-8 sm:rounded-lg"
                         >
-                            <div className="mt-4">
-                                <InputLabel
-                                    htmlFor="project_name"
-                                    value="Project Name"
-                                />
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="mt-4">
+                                    <InputLabel
+                                        htmlFor="project_name"
+                                        value="Project Name"
+                                    />
 
-                                <TextInput
-                                    id="project_name"
-                                    type="text"
-                                    name="name"
-                                    value={data.name}
-                                    className="block w-full mt-1"
-                                    isFocused={true}
-                                    onChange={(e) =>
-                                        setData("name", e.target.value)
-                                    }
-                                />
+                                    <TextInput
+                                        id="project_name"
+                                        type="text"
+                                        name="name"
+                                        value={data.name}
+                                        className="block w-full mt-1"
+                                        isFocused={true}
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
+                                    />
 
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
+                                    <InputError
+                                        message={errors.name}
+                                        className="mt-2"
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <InputLabel
+                                        htmlFor="project_category"
+                                        value="Project Name"
+                                    />
+
+                                    <SelectInput
+                                        id="project_category"
+                                        type="text"
+                                        name="category"
+                                        value={data.category}
+                                        classcategory="block w-full mt-1"
+                                        isFocused={true}
+                                        onChange={(e) =>
+                                            setData("category", e.target.value)
+                                        }
+                                    >
+                                        <option value="">Select Category</option>
+                                        <option value="brand ">Brand </option>
+                                        <option value="Graphic Design ">Graphic Design </option>
+                                        <option value="Motion Graphic">Motion Graphic</option>
+                                    </SelectInput>
+
+                                    <InputError
+                                        message={errors.category}
+                                        className="mt-2"
+                                    />
+                                </div>
                             </div>
-
                             <div className="mt-4">
                                 <InputLabel
                                     htmlFor="project_description"
