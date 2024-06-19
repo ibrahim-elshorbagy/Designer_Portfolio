@@ -26,6 +26,8 @@ class UpdateProjectRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'images' => ['required', 'array'],
             'category' => ['required', Rule::in(['brand', 'Graphic Design', 'Motion Graphic'])],
+            'cover_image' => ['required'],
+            'cover_image_new' => [],
 
             // 'images.*' => ['required'],
             // 'images.*' => ['regex:/\.(jpg|jpeg|png|gif)$/i' ,'image'],

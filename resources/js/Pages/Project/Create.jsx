@@ -53,6 +53,7 @@ export default function Create({ auth }) {
 
     const { data, setData, post, errors } = useForm({
         images: [],
+        cover_image: "",
         name: "",
         description: "",
     });
@@ -156,10 +157,16 @@ export default function Create({ auth }) {
                                             setData("category", e.target.value)
                                         }
                                     >
-                                        <option value="">Select Category</option>
+                                        <option value="">
+                                            Select Category
+                                        </option>
                                         <option value="brand ">Brand </option>
-                                        <option value="Graphic Design ">Graphic Design </option>
-                                        <option value="Motion Graphic">Motion Graphic</option>
+                                        <option value="Graphic Design ">
+                                            Graphic Design{" "}
+                                        </option>
+                                        <option value="Motion Graphic">
+                                            Motion Graphic
+                                        </option>
                                     </SelectInput>
 
                                     <InputError
@@ -189,6 +196,68 @@ export default function Create({ auth }) {
                             </div>
 
                             <div className="p-10 mt-4 ">
+                                <div className="p-6 mx-auto ">
+                                    <div className="mt-4">
+                                        <div className="relative flex justify-center">
+                                            <input
+                                                id="image"
+                                                type="file"
+                                                name="image"
+                                                className="hidden"
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "cover_image",
+                                                        e.target.files[0]
+                                                    )
+                                                }
+                                            />
+
+                                            <label
+                                                htmlFor="image"
+                                                className="block w-full max-w-md mt-1 transition duration-300 ease-in-out border border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 hover:bg-gray-200"
+                                            >
+                                                <div className="flex items-center justify-center p-4">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="w-6 h-6 mr-2 text-gray-600"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                        />
+                                                    </svg>
+                                                    <p className="text-sm text-gray-600">
+                                                        Choose an image
+                                                    </p>
+                                                </div>
+                                            </label>
+                                            <InputError
+                                                message={errors.image}
+                                                className="mt-2 text-sm text-red-400"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {data.cover_image && (
+                                        <div className="flex items-center justify-center mt-6">
+                                            <div className="flex items-center justify-center w-full overflow-hidden bg-gray-100 rounded-lg shadow-md">
+                                                <img
+                                                    src={URL.createObjectURL(
+                                                        data.cover_image
+                                                    )}
+                                                    alt="Uploaded"
+                                                    className="object-cover max-w-full max-h-full"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
                                 <div className="my-4 text-center">
                                     <p className="text-lg font-semibold text-gray-700 ">
                                         Images Uploading

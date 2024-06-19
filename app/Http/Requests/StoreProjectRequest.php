@@ -28,6 +28,7 @@ class StoreProjectRequest extends FormRequest
             'category' => ['required', Rule::in(['brand', 'Graphic Design', 'Motion Graphic'])],
             'images' => ['required', 'array'],
             'images.*' => ['image'],
+            'cover_image' => ['required', 'image'],
         ];
     }
 

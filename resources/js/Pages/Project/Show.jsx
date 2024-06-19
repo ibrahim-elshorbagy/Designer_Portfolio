@@ -63,12 +63,13 @@ const Show = ({ auth, project }) => {
             }
         >
             <Head title={`Project "${project.name}"`} />
+            {JSON.stringify(project)}
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="h-1/2">
                             <img
-                                src={project.image_path[0]}
+                                src={project.cover_image}
                                 alt=""
                                 className="object-cover w-full h-full"
                             />

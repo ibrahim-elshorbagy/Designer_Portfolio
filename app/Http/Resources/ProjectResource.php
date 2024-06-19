@@ -27,6 +27,9 @@ class ProjectResource extends JsonResource
             'image_path' => collect(json_decode($this->image_path))->map(function($path) {
                 return Storage::url($path);
             })->all(),
+            'cover_image' => $this->cover_path && !(str_starts_with($this->cover_path, 'http')) ?
+                Storage::url($this->cover_path) : $this->cover_path,
+
         ];
     }
 }

@@ -56,9 +56,18 @@ class ProjectController extends Controller
         $data = $request->validated();
 
 
+
+
         $data['slug'] = Str::slug($data['name']);
 
         $imageFolder = 'project/' . $data['slug'];
+
+        $cover_image = $data['cover_image'] ?? null;
+
+        if($cover_image)
+        {
+            $data['cover_path'] = $cover_image->store($imageFolder .'/cover', 'public');
+        }
 
         $imagePaths = [];
 
@@ -74,6 +83,7 @@ class ProjectController extends Controller
         $data['image_path'] = json_encode($imagePaths, true);
 
         unset($data['images']);
+        unset($data['cover_image']);
 
         Project::create($data);
         return to_route('project.index')
@@ -111,6 +121,21 @@ class ProjectController extends Controller
 public function update(UpdateProjectRequest $request, Project $project)
 {
     $data = $request->validated();
+
+    // Cover Image ------------------------------------------------------
+
+        $cover_image_new = $data['cover_image_new'] ?? null;
+
+        if(isset($cover_image_new))
+        {
+            if($project->cover_path)
+            {
+                Storage::disk('public')->deleteDirectory(dirname($project->cover_path));
+            }
+            $cover_path = 'project/' .$project->slug.'/cover';
+            $project['cover_path'] = $cover_image_new->store($cover_path,'public');
+        }
+        $project->save();
 
     // Start slug change ------------------------------------------------------
 
