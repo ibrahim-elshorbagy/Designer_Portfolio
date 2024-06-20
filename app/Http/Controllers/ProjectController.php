@@ -164,6 +164,18 @@ public function update(UpdateProjectRequest $request, Project $project)
         }
         $project->save();
 
+
+    // Caegory ------------------------------------------------------
+
+        $category = $data['category'] ?? null;
+        if(isset($category))
+        {
+            $project['category'] = $category;
+        }
+        $project->save();
+
+    // Start slug change ------------------------------------------------------
+
     // Start slug change ------------------------------------------------------
 
     $oldSlug = $project->slug;

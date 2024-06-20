@@ -29,7 +29,7 @@ export default function Authenticated({ user, header, children }) {
                             // href={route("dashboard")}
                             // active={route().current("dashboard")}
                             >
-                                Projects
+                                Gallary
                             </NavLink>
                             <NavLink
                             // href={route("dashboard")}

@@ -12,7 +12,6 @@ Route::redirect('/','/Home');
 Route::get('/Home',[HomeController::class,'index'])->name('dashboard');
 Route::get('/gallary',[HomeController::class,'gallary'])->name('gallary');
 
-Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -22,6 +21,7 @@ Route::resource('project', ProjectController::class)->except(['show']);
 
 });
 
+Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
