@@ -123,13 +123,19 @@ public function update(UpdateProjectRequest $request, Project $project)
     $data = $request->validated();
 
 
-     // Behance link ------------------------------------------------------
+     // Intro link ------------------------------------------------------
 
         $intro_link = $data['intro_link'] ?? null;
         if(isset($intro_link))
         {
             $project['intro_link'] = $intro_link;
         }
+
+        if($intro_link === null)
+        {
+            $project['intro_link'] = NULL;
+        }
+
         $project->save();
 
 

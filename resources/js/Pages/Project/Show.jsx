@@ -96,7 +96,7 @@ const Show = ({ auth, project }) => {
                             />
                         </div>
                         {/* Intro Video */}
-                        {  (
+                        {project.intro_link &&(
                             <div className="w-full h-96  md:h-[500px] lg:h-[600px] xl:h-[800px]">
                                 <div className="flex items-center justify-center h-full">
                                     <iframe

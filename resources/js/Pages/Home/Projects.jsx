@@ -94,7 +94,7 @@ const [hoveredItem, setHoveredItem] = useState(null);
 
                                                     {hoveredItem ===
                                                         project.id && (
-                                                        <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-gray-900 bg-opacity-50 tooltip">
+                                                        <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-blue-500 bg-opacity-50 tooltip">
                                                             <Link
                                                                 className="hover:underline"
                                                                 href={route(
