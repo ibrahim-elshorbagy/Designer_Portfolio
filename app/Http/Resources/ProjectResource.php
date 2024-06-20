@@ -24,6 +24,7 @@ class ProjectResource extends JsonResource
             'category' => $this->category,
             'description' => $this->description,
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
+            'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
             'image_path' => collect(json_decode($this->image_path))->map(function($path) {
                 return Storage::url($path);
             })->all(),

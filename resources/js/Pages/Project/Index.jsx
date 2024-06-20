@@ -68,8 +68,6 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                 </div>
             }
         >
-
-
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {success && (
@@ -110,7 +108,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                             </TableHeading>
 
                                             <TableHeading
-                                                name="status"
+                                                name="category"
                                                 sort_field={
                                                     queryParams.sort_field
                                                 }
@@ -119,9 +117,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 }
                                                 sortChanged={sortChanged}
                                             >
-                                                Status
+                                                Category
                                             </TableHeading>
-
                                             <TableHeading
                                                 name="created_at"
                                                 sort_field={
@@ -134,9 +131,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                             >
                                                 Create Date
                                             </TableHeading>
-
                                             <TableHeading
-                                                name="due_date"
+                                                name="updated_at"
                                                 sort_field={
                                                     queryParams.sort_field
                                                 }
@@ -145,12 +141,10 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 }
                                                 sortChanged={sortChanged}
                                             >
-                                                Due Date
+                                                Updated At
                                             </TableHeading>
-                                            <th className="px-3 py-3">
-                                                Created By
-                                            </th>
-                                            <th className="px-3 py-3 text-right">
+
+                                            <th className="px-3 py-3 ">
                                                 Actions
                                             </th>
                                         </tr>
@@ -174,30 +168,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                     }
                                                 ></TextInput>
                                             </th>
-                                            <th className="px-3 py-3 ">
-                                                <SelectInput
-                                                    className="w-full"
-                                                    onChange={(e) =>
-                                                        searchFieldChanged(
-                                                            "status",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                >
-                                                    <option value="">
-                                                        Status
-                                                    </option>
-                                                    <option value="pending">
-                                                        Pending
-                                                    </option>
-                                                    <option value="in_progress">
-                                                        In Progress
-                                                    </option>
-                                                    <option value="completed">
-                                                        Completed
-                                                    </option>
-                                                </SelectInput>
-                                            </th>
+
                                             <th className="px-3 py-3"></th>
                                             <th className="px-3 py-3"></th>
                                             <th className="px-3 py-3"></th>
@@ -215,7 +186,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 </td>
                                                 <td className="px-3 py-2">
                                                     <img
-                                                        src={project.image_path}
+                                                        src={
+                                                            project.cover_image
+                                                        }
                                                         style={{ width: 60 }}
                                                     />
                                                 </td>
@@ -232,14 +205,16 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                         </Link>
                                                     </div>
                                                 </th>
-
+                                                <td className="px-3 py-2 text-nowrap">
+                                                    {project.category}
+                                                </td>
                                                 <td className="px-3 py-2 text-nowrap">
                                                     {project.created_at}
                                                 </td>
                                                 <td className="px-3 py-2 text-nowrap">
-                                                    {project.category}
+                                                    {project.updated_at}
                                                 </td>
-                                                <td className="px-3 py-2"></td>
+
                                                 <td className="px-3 py-2 text-nowrap">
                                                     <Link
                                                         href={route(
