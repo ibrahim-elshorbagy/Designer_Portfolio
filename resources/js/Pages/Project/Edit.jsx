@@ -59,6 +59,7 @@ export default function Create({ auth, project }) {
         cover_image: project.cover_image || "",
         cover_image_new: "",
         behance_link: project.behance_link || "",
+        intro_link:project.intro_link ||"",
         _method: "PUT",
     });
 
@@ -199,6 +200,29 @@ export default function Create({ auth, project }) {
 
                                 <InputError
                                     message={errors.behance_link}
+                                    className="mt-2"
+                                />
+                            </div>
+                            <div className="mt-4">
+                                <InputLabel
+                                    htmlFor="intro_link"
+                                    value="Intro link"
+                                />
+
+                                <TextInput
+                                    id="intro_link"
+                                    type="text"
+                                    name="name"
+                                    value={data.intro_link}
+                                    className="block w-full mt-1"
+                                    isFocused={true}
+                                    onChange={(e) =>
+                                        setData("intro_link", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.intro_link}
                                     className="mt-2"
                                 />
                             </div>

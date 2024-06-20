@@ -8,6 +8,19 @@ import { Slide } from "react-slideshow-image";
 
 const Show = ({ auth, project }) => {
 
+    const getYouTubeEmbedUrl = (url) => {
+        if (!url) return null; // Return null if no URL is provided
+        const videoIdMatch =
+            url.match(
+                /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
+            ) || url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^&]+)/);
+        return videoIdMatch
+            ? `https://www.youtube.com/embed/${videoIdMatch[1]}?autoplay=1`
+            : null;
+    };
+
+    const youtubeEmbedUrl = getYouTubeEmbedUrl(project?.intro_link);
+
 
     //for adding class to project description As Tailwind Clear it
     useEffect(() => {
@@ -19,17 +32,16 @@ const Show = ({ auth, project }) => {
             if (container) {
                 // Define Tailwind CSS classes as separate tokens
                 const elementClasses = {
-                    H1: ["text-3xl", "font-bold", "mb-4"], // Example for h1
-                    H2: ["text-2xl", "font-bold", "mb-3"], // Example for h2
-                    H3: ["text-xl", "font-bold", "mb-2"], // Example for h3
-                    H4: ["text-lg", "font-bold", "mb-2"], // Example for h4
-                    H5: ["text-base", "font-bold", "mb-2"], // Example for h5
-                    H6: ["text-sm", "font-bold", "mb-2"], // Example for h6
-                    P: ["mb-4"], // Example for p
-                    UL: ["list-disc", "pl-4", "mb-4"], // Example for ul
-                    OL: ["list-decimal", "pl-4", "mb-4"], // Example for ol
-                    IFRAME: ['w-full', 'h-svh' ,'border-2' ,'border-gray-200', 'rounded-lg'], // Example for iframe
-                    HR: ["my-4", "border-t", "border-gray-200"], // Example for hr
+                    H1: ["text-3xl", "font-bold", "mb-4"],
+                    H2: ["text-2xl", "font-bold", "mb-3"],
+                    H3: ["text-xl", "font-bold", "mb-2"],
+                    H4: ["text-lg", "font-bold", "mb-2"],
+                    H5: ["text-base", "font-bold", "mb-2"],
+                    H6: ["text-sm", "font-bold", "mb-2"],
+                    P: ["mb-4"],
+                    UL: ["list-disc", "pl-4", "mb-4"],
+                    OL: ["list-decimal", "pl-4", "mb-4"],
+                    IFRAME: ['w-full', 'h-svh' ,'border-2' ,'border-gray-200', 'rounded-lg'],
                 };
 
 
@@ -55,21 +67,24 @@ const Show = ({ auth, project }) => {
         <GuestLayout
             user={auth.user}
             header={
-                <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                        {`Project ${project.name}`}
+                <div className="relative flex flex-col items-center">
+                    <h2 className="pb-2 mb-4 text-2xl font-semibold leading-tight text-gray-800 border-b-2 border-gray-200">
+                        {`${project.name}`}
                     </h2>
-                    <Link
-                        href={route("project.edit", project.id)}
-                        className="px-3 py-1 text-white transition-all rounded shadow bg-emerald-500 hover:bg-emerald-600"
-                    >
-                        Edit
-                    </Link>
+
+                    {auth.user && (
+                        <Link
+                            href={route("project.edit", project.id)}
+                            className="absolute right-0 px-3 py-1 text-white transition-all rounded shadow bottom-6 bg-emerald-500 hover:bg-emerald-600"
+                        >
+                            Edit
+                        </Link>
+                    )}
                 </div>
             }
         >
             <Head title={`Project "${project.name}"`} />
-            <div className="py-12">
+            <div>
                 <div className="container pb-10 mx-auto sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white sm:rounded-lg">
                         {/* Cover Image */}
@@ -82,6 +97,8 @@ const Show = ({ auth, project }) => {
                                 />
                             </div>
                         </div>
+
+                        {/*  Description */}
                         <div className="p-6 text-gray-900">
                             <div
                                 className="mt-1 text-center inside"
@@ -90,7 +107,23 @@ const Show = ({ auth, project }) => {
                                 }}
                             />
                         </div>
-                        <div className="w-full h-1/2">
+                        {/* Intro Video */}
+                        {youtubeEmbedUrl && (
+                            <div className="w-full h-96  md:h-[500px] lg:h-[600px] xl:h-[800px]">
+                                <div className="flex items-center justify-center h-full">
+                                    <iframe
+                                        src={youtubeEmbedUrl}
+                                        className="w-full h-full rounded-lg shadow-lg"
+                                        title="Project Introduction"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        <br />
+                        {/* Images */}
+                        <div className="w-full mt-16 md:mt-32 lg:mt-48 xl:mt-[200px] h-1/2">
                             <Slide
                                 duration={2000}
                                 transitionDuration={500}
@@ -105,13 +138,14 @@ const Show = ({ auth, project }) => {
                                         <img
                                             src={image}
                                             alt={`Slide ${index}`}
-                                            className="object-contain w-full "
+                                            className="object-contain w-full h-64 md:h-80 lg:h-96 xl:h-full"
                                         />
                                     </div>
                                 ))}
                             </Slide>
                         </div>
 
+                        {/*  Behance link */}
                         <div className="flex flex-col items-center mt-5 sm:flex-row sm:justify-center">
                             <a
                                 href={project.behance_link}

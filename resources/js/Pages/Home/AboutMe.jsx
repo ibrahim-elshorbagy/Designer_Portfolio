@@ -58,7 +58,7 @@ const AboutMe = () => {
                             </div>
                             <div className="flex items-center pt-1 space-x-2">
                                 <span>Location:</span>
-                                <span className="text-black">Dubai</span>
+                                <span className="text-black">UAE , Dubai</span>
                             </div>
                         </div>
                         <div className="flex items-center mb-5 space-x-4 space-y-4 md:space-y-0">

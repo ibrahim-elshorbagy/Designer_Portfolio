@@ -29,6 +29,7 @@ class UpdateProjectRequest extends FormRequest
             'cover_image' => ['required'],
             'cover_image_new' => [],
             'behance_link' => ['required', 'url'],
+            'intro_link' => ['nullable', 'url'],
 
             // 'images.*' => ['required'],
             // 'images.*' => ['regex:/\.(jpg|jpeg|png|gif)$/i' ,'image'],

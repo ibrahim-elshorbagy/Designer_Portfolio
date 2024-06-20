@@ -211,7 +211,7 @@ export default function GuestLayout({ user, children, header }) {
             </nav>
 
             {header && (
-                <header className="bg-white shadow">
+                <header className="">
                     <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {header}
                     </div>

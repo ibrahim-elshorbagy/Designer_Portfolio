@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('image_path')->nullable();
             $table->text('cover_path')->nullable();
             $table->text('behance_link')->nullable();
+            $table->text('intro_link')->nullable();
             $table->timestamps();
         });
     }

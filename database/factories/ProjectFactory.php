@@ -21,7 +21,7 @@ class ProjectFactory extends Factory
             'description' => fake()->realText(),
             'slug' => fake()->slug(),
             'image_path' => json_encode(['image' => fake()->imageUrl()]),
-            'cover_image' => json_encode(['image' => fake()->imageUrl()]),
+            'cover_path' => fake()->imageUrl(),
             'created_at' => time(),
             'updated_at' => time(),
         ];
