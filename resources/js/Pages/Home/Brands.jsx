@@ -80,7 +80,6 @@ const Brands = () => {
                         We collaborate with industry leaders to provide you with
                         the best solutions.
                     </p>
-                    <hr className="mx-auto my-8 border-t-2 border-indigo-500" />
                 </div>
 
                 <Slider {...settings}>

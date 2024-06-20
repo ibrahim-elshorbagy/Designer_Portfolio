@@ -33,7 +33,6 @@ const Services = () => {
                     <p className="text-lg text-gray-600">
                         Gain insights into my proficiency
                     </p>
-                    <hr className="mx-auto my-8 border-t-2 border-indigo-500" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

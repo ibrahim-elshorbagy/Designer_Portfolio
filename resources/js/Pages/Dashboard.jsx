@@ -8,13 +8,11 @@ import MyProjects from "./Home/MyProjects";
 import Brands from "./Home/Brands";
 import Testimonials from "./Home/Testimonials";
 import HireMe from "./Home/HireMe";
+import Projects from "./Home/Projects";
 
 
 
-export default function Dashboard({
-    auth,
-
-}) {
+export default function Dashboard({ auth, projects }) {
     return (
         <GuestLayout user={auth.user}>
             <Head title="Dashboard" />
@@ -32,9 +30,9 @@ export default function Dashboard({
 
                 <Testimonials />
                 <hr className="my-6 border-t border-gray-200" />
+                <Projects projects={projects} />
 
                 <HireMe />
-
                 {/* <MyProjects /> */}
             </div>
         </GuestLayout>

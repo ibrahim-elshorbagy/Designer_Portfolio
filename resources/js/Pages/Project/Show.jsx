@@ -8,18 +8,6 @@ import { Slide } from "react-slideshow-image";
 
 const Show = ({ auth, project }) => {
 
-    const getYouTubeEmbedUrl = (url) => {
-        if (!url) return null; // Return null if no URL is provided
-        const videoIdMatch =
-            url.match(
-                /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
-            ) || url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^&]+)/);
-        return videoIdMatch
-            ? `https://www.youtube.com/embed/${videoIdMatch[1]}?autoplay=1`
-            : null;
-    };
-
-    const youtubeEmbedUrl = getYouTubeEmbedUrl(project?.intro_link);
 
 
     //for adding class to project description As Tailwind Clear it
@@ -108,11 +96,11 @@ const Show = ({ auth, project }) => {
                             />
                         </div>
                         {/* Intro Video */}
-                        {youtubeEmbedUrl && (
+                        {  (
                             <div className="w-full h-96  md:h-[500px] lg:h-[600px] xl:h-[800px]">
                                 <div className="flex items-center justify-center h-full">
                                     <iframe
-                                        src={youtubeEmbedUrl}
+                                        src={project.intro_link}
                                         className="w-full h-full rounded-lg shadow-lg"
                                         title="Project Introduction"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

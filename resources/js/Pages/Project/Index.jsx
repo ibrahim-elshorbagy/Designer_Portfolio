@@ -237,7 +237,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                     {project.created_at}
                                                 </td>
                                                 <td className="px-3 py-2 text-nowrap">
-                                                    {project.due_date}
+                                                    {project.category}
                                                 </td>
                                                 <td className="px-3 py-2"></td>
                                                 <td className="px-3 py-2 text-nowrap">
