@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
@@ -9,20 +9,19 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::redirect('/','/Home');
-Route::get('/Home',[DashboardController::class,'index'])->name('dashboard');
+Route::get('/Home',[HomeController::class,'index'])->name('dashboard');
+Route::get('/gallary',[HomeController::class,'gallary'])->name('gallary');
+
+Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-
-
+Route::redirect('admin','/project');
 Route::resource('project', ProjectController::class)->except(['show']);
 
-//Route::resource('user',UserController::class);
-
 });
-Route::redirect('admin','/project');
-Route::get('project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

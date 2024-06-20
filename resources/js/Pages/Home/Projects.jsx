@@ -17,9 +17,9 @@ const [hoveredItem, setHoveredItem] = useState(null);
 
     return (
         <div className="container p-6 mx-auto">
-            <div className="max-w-2xl mx-auto mb-12 text-center">
+            <div className="max-w-2xl mx-auto mb-3 text-center">
                 <h2 className="mb-4 text-4xl font-bold text-gray-900">
-                    Projects
+                    Gallary
                 </h2>
                 <p className="text-lg text-gray-600">
                     Gain insights into my proficiency Projects
@@ -51,7 +51,7 @@ const [hoveredItem, setHoveredItem] = useState(null);
                             {categories.map((category) => (
                                 <Tab.Panel
                                     key={category}
-                                    className="p-6 bg-white rounded-xl ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus"
+                                    className="p-6 rounded-xl ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus"
                                 >
                                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                                         {category === selectedCategory &&
@@ -72,24 +72,44 @@ const [hoveredItem, setHoveredItem] = useState(null);
                                                 >
                                                     {project.intro_link ? (
                                                         // Display video iframe if intro_link exists
-                                                        <iframe
-                                                            title={project.name}
-                                                            width="100%"
-                                                            className="h-[280px]"
-                                                            src={
-                                                                project.intro_link
-                                                            }
-                                                            allowFullScreen
-                                                        />
+                                                        <Link
+                                                            className="hover:underline"
+                                                            href={route(
+                                                                "project.show",
+                                                                project.slug
+                                                            )}
+                                                        >
+                                                            <iframe
+                                                                title={
+                                                                    project.name
+                                                                }
+                                                                width="100%"
+                                                                className="h-[280px]"
+                                                                src={
+                                                                    project.intro_link
+                                                                }
+                                                                allowFullScreen
+                                                            />
+                                                        </Link>
                                                     ) : (
                                                         // Display cover image if intro_link does not exist
-                                                        <img
-                                                            src={
-                                                                project.cover_path
-                                                            }
-                                                            alt={project.name}
-                                                            className="object-cover w-full h-[280px]"
-                                                        />
+                                                        <Link
+                                                            className="hover:underline"
+                                                            href={route(
+                                                                "project.show",
+                                                                project.slug
+                                                            )}
+                                                        >
+                                                            <img
+                                                                src={
+                                                                    project.cover_path
+                                                                }
+                                                                alt={
+                                                                    project.name
+                                                                }
+                                                                className="object-cover w-full h-[280px]"
+                                                            />
+                                                        </Link>
                                                     )}
 
                                                     {hoveredItem ===

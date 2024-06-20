@@ -32,10 +32,10 @@ export default function GuestLayout({ user, children, header }) {
                                 Home
                             </NavLink>
                             <NavLink
-                            // href={route("dashboard")}
-                            // active={route().current("dashboard")}
+                                href={route("gallary")}
+                                active={route().current("gallary")}
                             >
-                                Projects
+                                Gallary
                             </NavLink>
                             <NavLink
                             // href={route("dashboard")}
@@ -169,10 +169,10 @@ export default function GuestLayout({ user, children, header }) {
                             Home
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                        // href={route("dashboard")}
-                        // active={route().current("dashboard")}
+                            href={route("gallary")}
+                            active={route().current("gallary")}
                         >
-                            Projects
+                            Gallary
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                         // href={route("dashboard")}
