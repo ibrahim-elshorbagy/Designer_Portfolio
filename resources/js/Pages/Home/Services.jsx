@@ -1,5 +1,6 @@
 import React from "react";
 import { FaDesktop, FaCode, FaUserAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Services = () => {
     const servicesData = [
@@ -24,13 +25,19 @@ const Services = () => {
     ];
 
     return (
-        <div className="pt-12 pb-24">
+        <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="pt-5 pb-10 md:pb-24 md:pt-12"
+        >
             <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                 <div className="max-w-2xl mx-auto mb-12 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                    <h2 className="mb-4 text-xl font-bold text-gray-900 md:text-3xl">
                         Creative and Professional Skills
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-gray-600 md:text-lg">
                         Gain insights into my proficiency
                     </p>
                 </div>
@@ -51,18 +58,18 @@ const Services = () => {
                                 <p className="text-gray-600">
                                     {service.description}
                                 </p>
-                                <a
+                                {/* <a
                                     href="#"
                                     className="inline-block mt-4 font-semibold text-blue-500 hover:text-blue-700"
                                 >
                                     Explore Service
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

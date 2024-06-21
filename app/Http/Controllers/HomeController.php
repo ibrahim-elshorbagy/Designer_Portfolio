@@ -19,7 +19,7 @@ class HomeController extends Controller
             ->get()
             ->groupBy('category') // Group projects by category
             ->map(function ($group) {
-                return $group->take(4)->map(function ($project) {
+                return $group->take(3)->map(function ($project) {
                     $project['cover_path'] = $project->cover_path && !(str_starts_with($project->cover_path, 'http')) ?
                         Storage::url($project->cover_path) : $project->cover_path;
                     return $project;

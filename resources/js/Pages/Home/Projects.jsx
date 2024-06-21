@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { Tab } from "@headlessui/react";
 import { Link } from "@inertiajs/react";
 
+import { motion } from "framer-motion";
 
 export default function Projects({ projects }) {
 
@@ -15,25 +16,44 @@ const [hoveredItem, setHoveredItem] = useState(null);
         ? projects.filter((project) => project.category === selectedCategory)
         : [];
 
+    const gridContainerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.25,
+            },
+        },
+    };
+    const gridSquareVariants = {
+        hidden: { opacity: 0 },
+        show: { opacity: 1 },
+    };
     return (
-        <div className="container p-6 mx-auto">
+        <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="container p-2 mx-auto md:p-6"
+        >
             <div className="max-w-2xl mx-auto mb-3 text-center">
-                <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                <h2 className="mb-4 text-xl font-bold text-gray-900 md:text-3xl">
                     Gallary
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-gray-600 md:text-lg">
                     Gain insights into my proficiency Projects
                 </p>
             </div>
-            <div className="container p-6 mx-auto rounded-lg">
+            <div className="container mx-auto rounded-lg md:p-6">
                 <div className="w-full sm:px-0">
                     <Tab.Group>
-                        <Tab.List className="flex justify-center gap-5">
+                        <Tab.List className="flex justify-center gap-3 md:gap-5">
                             {categories.map((category) => (
                                 <Tab
                                     key={category}
                                     className={({ selected }) =>
-                                        `font-medium text-black ${
+                                        `text-xs md:text-lg md:font-medium text-black ${
                                             selected
                                                 ? "text-blue-500"
                                                 : "text-black hover:bg-white/[0.12]"
@@ -51,12 +71,20 @@ const [hoveredItem, setHoveredItem] = useState(null);
                             {categories.map((category) => (
                                 <Tab.Panel
                                     key={category}
-                                    className="p-6 rounded-xl ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus"
+                                    className="md:p-6 rounded-xl ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus"
                                 >
-                                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                                    <motion.div
+                                        variants={gridContainerVariants}
+                                        initial="hidden"
+                                        animate="show"
+                                        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
+                                    >
                                         {category === selectedCategory &&
                                             filteredProjects.map((project) => (
                                                 <div
+                                                    variants={
+                                                        gridSquareVariants
+                                                    }
                                                     key={project.id}
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowFullScreen
@@ -84,7 +112,7 @@ const [hoveredItem, setHoveredItem] = useState(null);
                                                                     project.name
                                                                 }
                                                                 width="100%"
-                                                                className="h-[280px]"
+                                                                className="h-[150px] md:h-[280px]"
                                                                 src={
                                                                     project.intro_link
                                                                 }
@@ -107,7 +135,7 @@ const [hoveredItem, setHoveredItem] = useState(null);
                                                                 alt={
                                                                     project.name
                                                                 }
-                                                                className="object-cover w-full h-[280px]"
+                                                                className="object-cover w-full h-[150px]   md:h-[280px]"
                                                             />
                                                         </Link>
                                                     )}
@@ -128,13 +156,13 @@ const [hoveredItem, setHoveredItem] = useState(null);
                                                     )}
                                                 </div>
                                             ))}
-                                    </div>
+                                    </motion.div>
                                 </Tab.Panel>
                             ))}
                         </Tab.Panels>
                     </Tab.Group>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

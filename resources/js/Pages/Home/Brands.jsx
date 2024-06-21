@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
 const brands = [
     {
@@ -70,13 +71,19 @@ const Brands = () => {
     };
 
     return (
-        <section className="py-16">
+        <motion.section
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="md:py-16"
+        >
             <div className="container px-4 mx-auto">
-                <div className="max-w-2xl mx-auto mb-12 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                <div className="max-w-2xl mx-auto text-center md:mb-12">
+                    <h2 className="mb-4 text-xl font-bold text-gray-900 md:text-3xl">
                         Our Trusted Partners
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-gray-600 md:text-lg">
                         We collaborate with industry leaders to provide you with
                         the best solutions.
                     </p>
@@ -97,7 +104,7 @@ const Brands = () => {
                     ))}
                 </Slider>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

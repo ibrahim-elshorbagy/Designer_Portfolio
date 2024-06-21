@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.3",
+        "framer-motion": "^11.2.11",
         "react-icons": "^5.2.1",
         "react-quill": "^2.0.0",
         "react-slick": "^0.30.2",

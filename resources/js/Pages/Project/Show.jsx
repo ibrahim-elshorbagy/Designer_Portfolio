@@ -56,14 +56,14 @@ const Show = ({ auth, project }) => {
             user={auth.user}
             header={
                 <div className="relative flex flex-col items-center">
-                    <h2 className="pb-2 mb-4 text-2xl font-semibold leading-tight text-gray-800 border-b-2 border-gray-200">
+                    <h2 className="pb-2 mb-4 text-2xl font-semibold leading-tight text-gray-800 border-b-2 border-blue-200">
                         {`${project.name}`}
                     </h2>
 
                     {auth.user && (
                         <Link
                             href={route("project.edit", project.id)}
-                            className="absolute right-0 px-3 py-1 text-white transition-all rounded shadow bottom-6 bg-emerald-500 hover:bg-emerald-600"
+                            className="absolute right-0 px-3 py-1 text-white transition-all bg-blue-500 rounded shadow bottom-6 hover:bg-blue-600"
                         >
                             Edit
                         </Link>
@@ -71,7 +71,6 @@ const Show = ({ auth, project }) => {
                 </div>
             }
         >
-            <Head title={`Project "${project.name}"`} />
             <div>
                 <div className="container pb-10 mx-auto sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white sm:rounded-lg">
@@ -96,7 +95,7 @@ const Show = ({ auth, project }) => {
                             />
                         </div>
                         {/* Intro Video */}
-                        {project.intro_link &&(
+                        {project.intro_link && (
                             <div className="w-full h-96  md:h-[500px] lg:h-[600px] xl:h-[800px]">
                                 <div className="flex items-center justify-center h-full">
                                     <iframe
